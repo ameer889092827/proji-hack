@@ -26,7 +26,7 @@ async function startServer() {
       const ai = getAiClient(req);
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.0-flash',
         contents: `Ты парсер. Извлеки из текста пользователя структурированные данные. Верни строго JSON, соответствующий интерфейсу Task. Если данных не хватает, заполни недостающие поля null или пустыми массивами. Текст: "${rawText}"`,
         config: {
           responseMimeType: 'application/json',
@@ -91,7 +91,7 @@ async function startServer() {
       const volContext = volunteer ? `Профиль волонтера: ${JSON.stringify(volunteer)}.` : '';
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.0-flash',
         contents: `Ты координатор проекта. Контекст задачи: ${JSON.stringify(taskContext)}. ${volContext} Отвечай на вопрос волонтера ТОЛЬКО опираясь на этот контекст задачи и его профиль. Подскажи, чем именно он может быть полезен, исходя из его навыков. Если ответа в контексте нет, скажи: 'В описании задачи этого нет, я уточню у куратора'. Будь краток, вежлив и обращайся к волонтеру по имени. Ничего не придумывай по условиям задачи.\n\nВопрос: ${message}`,
         config: {
           temperature: 0.1
