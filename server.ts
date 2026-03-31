@@ -57,7 +57,7 @@ async function startServer() {
       const ai = getAiClient(req);
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.0-flash',
         contents: `Оцени совместимость каждого волонтера с задачей. Для каждого волонтера верни match_score (0-100) и reason (1 короткое предложение, аргументирующее % совпадения на основе навыков/графика). Верни строго JSON массив объектов { volunteerId, match_score, reason }.\n\nЗадача: ${JSON.stringify(task)}\nВолонтеры: ${JSON.stringify(MOCK_VOLUNTEERS)}`,
         config: {
           responseMimeType: 'application/json',
